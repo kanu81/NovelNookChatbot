@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>NovelNook Chatbot</title>
+    <style>
+      /* Global Styles */
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #1f1f1f;
+        color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      /* Navigation Bar */
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #212121;
+        padding: 15px 30px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        z-index: 10;
+      }
+
+      .navbar h1 {
+        font-size: 26px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+      }
+
+      .navbar h1 img {
+        width: 32px;
+        height: 32px;
+        margin-right: 12px;
+      }
+
+      .navbar button {
+        padding: 10px 20px;
+        background-color: #4caf50;
+        border: none;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      .navbar button:hover {
+        background-color: #388e3c;
+      }
+
+      /* Chatbot Card */
+      .chat-card {
+        background-color: #2c2c2c;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        width: 100%;
+        max-width: 800px;
+        margin-top: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: hidden;
+      }
+
+      .chat-card h2 {
+        color: #fff;
+        font-size: 24px;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      /* Chat Messages */
+      .message {
+        margin: 12px 0;
+        padding: 12px;
+        border-radius: 12px;
+        max-width: 75%;
+        word-wrap: break-word;
+        line-height: 1.6;
+        opacity: 0;
+        animation: fadeIn 1s forwards;
+        font-size: 16px;
+      }
+
+      .user {
+        background-color: #4a90e2;
+        color: white;
+        text-align: right;
+        margin-left: auto;
+        border-top-right-radius: 0;
+        max-width: 80%;
+      }
+
+      .bot {
+        background-color: #3f8e3f;
+        color: white;
+        text-align: left;
+        margin-right: auto;
+        border-top-left-radius: 0;
+        max-width: 80%;
+      }
+
+      /* Input Area */
+      .input-container {
+        display: flex;
+        margin-top: 25px;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      #userInput {
+        padding: 14px;
+        width: 80%;
+        border-radius: 12px;
+        border: 1px solid #444;
+        background-color: #555;
+        color: #fff;
+        font-size: 16px;
+      }
+
+      button {
+        padding: 14px 28px;
+        margin-left: 20px;
+        background-color: #4caf50;
+        border: none;
+        border-radius: 12px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #388e3c;
+      }
+
+      /* Chat Container */
+      .chat-container {
+        max-height: 450px;
+        overflow-y: auto;
+        padding-right: 10px;
+        margin-bottom: 15px;
+      }
+
+      /* Loading Indicator */
+      .loading {
+        color: #4caf50;
+        font-weight: bold;
+        text-align: center;
+        font-size: 18px;
+      }
+
+      /* Message Fade-In Animation */
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      /* Media Query for Smaller Screens */
+      @media (max-width: 768px) {
+        .input-container {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        #userInput {
+          width: 100%;
+          margin-bottom: 10px;
+        }
+
+        button {
+          width: 100%;
+          margin-top: 10px;
+        }
+
+        .chat-card {
+          width: 100%;
+          margin-top: 50px;
+          padding: 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+      <h1>
+        <img
+          src="https://img.icons8.com/fluency/452/chatbot.png"
+          alt="Chatbot Icon"
+        />
+        NovelNook Chatbot
+      </h1>
+    </div>
+
+    <!-- Chatbot Card -->
+    <div class="chat-card">
+      <h2>Chat with Gemini AI</h2>
+      <div class="chat-container" id="chat"></div>
+      <!-- Area to display chat messages -->
+      <div id="responseArea" class="loading">
+        Waiting for Gemini's response...
+      </div>
+      <!-- Loading Indicator -->
+
+      <!-- Input Area -->
+      <div class="input-container">
+        <input type="text" id="userInput" placeholder="Ask something..." />
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
